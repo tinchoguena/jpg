@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "name": "asset 1",
+      "id": "1"
+    },
+    {
+      "name": "asset 2",
+      "id": "2"
+    },
+    {
+      "name": "asset 3",
+      "id": "3"
+    },
+    {
+      "name": "asset 4",
+      "id": "4"
+    }
+  ]
+}

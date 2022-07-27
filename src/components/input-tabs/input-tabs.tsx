@@ -7,6 +7,9 @@ import Box from '@mui/material/Box';
 import { InputResultsCardsContainer, InputResultsCardsImage, TabsContainer } from './styles'
 import mySvg from '../../assets/Icon-Verified.svg'
 import { getCollections } from '../../services/get-collections';
+import { fetchUsers } from '../../services/get-users-mocked';
+import { fetchTags } from '../../services/get-tags-mocked';
+import { fetchAssets } from '../../services/get-assets';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -115,9 +118,14 @@ export const TabsResults = () => {
     const response = await getCollections()
     setCollections(response)
   }
-  console.log('collections', collections)
+  const handleGetUsers = async () => console.log(await fetchUsers())
+  const handleGetTags = async () => console.log(await fetchTags())
+  const handleGetAssets = async () => console.log(await fetchAssets())
   useEffect(() => {
     handleGetCollections()
+    handleGetUsers()
+    handleGetTags()
+    handleGetAssets()
   }, [])
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

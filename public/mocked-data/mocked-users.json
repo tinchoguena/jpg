@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "userName": "@martinguena",
+      "name": "Martin",
+      "lastName": "Guena",
+      "id": "1"
+    },
+    {
+      "userName": "@blakelock129",
+      "name": "Blakelock",
+      "lastName": "Brown",
+      "id": "2"
+    },
+    {
+      "userName": "@blakelock129",
+      "name": "Blakelock 2",
+      "lastName": "Brown",
+      "id": "3"
+    },
+    {
+      "userName": "@martinguena",
+      "name": "Martin 2",
+      "lastName": "Guena",
+      "id": "4"
+    }
+  ]
+}

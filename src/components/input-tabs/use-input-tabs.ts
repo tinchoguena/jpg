@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import mySvg from '../../assets/Icon-Verified.svg'
 import { getCollections } from '../../services/get-collections';
-import { RenderList } from '../common/render-list';
 import { getAssets } from '../../services/get-assets-mocked';
 import { getUsers } from '../../services/get-users-mocked';
 import { getTags } from "../../services/get-tags-mocked";
@@ -68,14 +67,15 @@ export const useInputTabs = () => {
     })
   );
 
-  const mapTagsDataToListFormat = (data: assetNode[] | undefined) => data?.map(user => (
+  const mapTagsDataToListFormat = (data: assetNode[] | undefined) => (data?.map(user => (
     {
       id: user.id,
       name: user.name,
       logoImg: undefined,
       secondaryImg: undefined
     })
-  );
+  ))
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -85,7 +85,7 @@ export const useInputTabs = () => {
     { getData: getCollections, mapData: mapColletionsDataToListFormat, value: value, index: 0 },
     { getData: getAssets, mapData: mapAssetsDataToListFormat, value: value, index: 1 },
     { getData: getUsers, mapData: mapUsersDataToListFormat, value: value, index: 2 },
-    { getData: getTags, mapData: mapTagsDataToListFormat, value: value, index: 4 }
+    { getData: getTags, mapData: mapTagsDataToListFormat, value: value, index: 3 }
   ]
 
   const mapTabOptionsProps = (index: number) => {

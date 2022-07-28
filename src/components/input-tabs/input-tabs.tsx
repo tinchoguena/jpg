@@ -30,6 +30,7 @@ interface TabPanelOption {
 
 interface RenderTabPanelsProps {
   tabsPanelsOptions: TabPanelOption[]
+  searchInput: string
 }
 
 interface RenderTabOptionsProps<T> {
@@ -39,9 +40,9 @@ interface RenderTabOptionsProps<T> {
 }
 
 const RenderTabOptions = ({ list, value, handleChange }: RenderTabOptionsProps<TabOptionNode>) => (
-  <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+  <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" >
     {list.map((item) => (
-      <Tab label={item.name} {...item} tabIndex={item.value} />
+      <Tab label={item.name} {...item} tabIndex={item.value} key={`key-for-${item.name}-${item.value}`} />
     ))}
   </Tabs>
 )
@@ -59,18 +60,19 @@ const TabPanel = (props: TabPanelProps) => {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
   );
 }
 
-const RenderTabPanels = ({ tabsPanelsOptions }: RenderTabPanelsProps) => (
+const RenderTabPanels = ({ tabsPanelsOptions, searchInput }: RenderTabPanelsProps) => (
   <>
-    {tabsPanelsOptions.map(tagPanelOption => (<TabPanel value={tagPanelOption.value} index={tagPanelOption.index}>
-      <RenderList getData={tagPanelOption.getData} mapData={tagPanelOption.mapData} />
-    </TabPanel>))}
+    {tabsPanelsOptions.map(tagPanelOption => (
+      <TabPanel value={tagPanelOption.value} index={tagPanelOption.index} key={`key-for-${tagPanelOption.index}-${tagPanelOption.value}`}>
+        <RenderList getData={tagPanelOption.getData} mapData={tagPanelOption.mapData} searchInput={searchInput} />
+      </TabPanel>))}
   </>
 )
 
@@ -79,13 +81,15 @@ interface TabsListProps {
   handleChange: (event: SyntheticEvent<Element, Event>, newValue: number) => void
   tabsPanelsOptions: TabPanelOption[],
   tabsOptions: TabOptionNode[]
+  searchInput: string
 }
 
 export const TabsList = ({
   value,
   handleChange,
   tabsPanelsOptions,
-  tabsOptions
+  tabsOptions,
+  searchInput
 }: TabsListProps) => {
 
   return (
@@ -93,7 +97,7 @@ export const TabsList = ({
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <RenderTabOptions list={tabsOptions} value={value} handleChange={handleChange} />
       </Box>
-      <RenderTabPanels tabsPanelsOptions={tabsPanelsOptions} />
+      <RenderTabPanels tabsPanelsOptions={tabsPanelsOptions} searchInput={searchInput} />
     </TabsContainer>
   );
 }

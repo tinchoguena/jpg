@@ -1,11 +1,10 @@
-
-import React, { SyntheticEvent } from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import { TabsContainer } from './styles'
-import { GenericListNode, RenderList } from '../common/render-list';
+import React, { SyntheticEvent } from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import { TabsContainer } from "./styles";
+import { GenericListNode, RenderList } from "../common/render-list";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -13,39 +12,47 @@ interface TabPanelProps {
   value: number;
 }
 
-
 interface TabOptionNode {
-  name: string
-  id: string
-  'aria-controls': string
-  value: number
+  name: string;
+  id: string;
+  "aria-controls": string;
+  value: number;
 }
 
 interface TabPanelOption {
-  mapData: (data: any) => GenericListNode[] | undefined
-  getData: () => Promise<any>
-  value: number
-  index: number
+  mapData: (data: any) => GenericListNode[] | undefined;
+  getData: () => Promise<any>;
+  value: number;
+  index: number;
 }
 
 interface RenderTabPanelsProps {
-  tabsPanelsOptions: TabPanelOption[]
-  searchInput: string
+  tabsPanelsOptions: TabPanelOption[];
+  searchInput: string;
 }
 
 interface RenderTabOptionsProps<T> {
-  value: number
-  handleChange: (event: React.SyntheticEvent, newValue: number) => void
-  list: T[]
+  value: number;
+  handleChange: (event: React.SyntheticEvent, newValue: number) => void;
+  list: T[];
 }
 
-const RenderTabOptions = ({ list, value, handleChange }: RenderTabOptionsProps<TabOptionNode>) => (
-  <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" >
+const RenderTabOptions = ({
+  list,
+  value,
+  handleChange,
+}: RenderTabOptionsProps<TabOptionNode>) => (
+  <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
     {list.map((item) => (
-      <Tab label={item.name} {...item} tabIndex={item.value} key={`key-for-${item.name}-${item.value}`} />
+      <Tab
+        label={item.name}
+        {...item}
+        tabIndex={item.value}
+        key={`key-for-${item.name}-${item.value}`}
+      />
     ))}
   </Tabs>
-)
+);
 
 const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
@@ -58,30 +65,41 @@ const TabPanel = (props: TabPanelProps) => {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
-}
+};
 
-const RenderTabPanels = ({ tabsPanelsOptions, searchInput }: RenderTabPanelsProps) => (
+const RenderTabPanels = ({
+  tabsPanelsOptions,
+  searchInput,
+}: RenderTabPanelsProps) => (
   <>
-    {tabsPanelsOptions.map(tagPanelOption => (
-      <TabPanel value={tagPanelOption.value} index={tagPanelOption.index} key={`key-for-${tagPanelOption.index}-${tagPanelOption.value}`}>
-        <RenderList getData={tagPanelOption.getData} mapData={tagPanelOption.mapData} searchInput={searchInput} />
-      </TabPanel>))}
+    {tabsPanelsOptions.map((tagPanelOption) => (
+      <TabPanel
+        value={tagPanelOption.value}
+        index={tagPanelOption.index}
+        key={`key-for-${tagPanelOption.index}-${tagPanelOption.value}`}
+      >
+        <RenderList
+          getData={tagPanelOption.getData}
+          mapData={tagPanelOption.mapData}
+          searchInput={searchInput}
+        />
+      </TabPanel>
+    ))}
   </>
-)
+);
 
 interface TabsListProps {
-  value: number
-  handleChange: (event: SyntheticEvent<Element, Event>, newValue: number) => void
-  tabsPanelsOptions: TabPanelOption[],
-  tabsOptions: TabOptionNode[]
-  searchInput: string
+  value: number;
+  handleChange: (
+    event: SyntheticEvent<Element, Event>,
+    newValue: number
+  ) => void;
+  tabsPanelsOptions: TabPanelOption[];
+  tabsOptions: TabOptionNode[];
+  searchInput: string;
 }
 
 export const TabsList = ({
@@ -89,15 +107,21 @@ export const TabsList = ({
   handleChange,
   tabsPanelsOptions,
   tabsOptions,
-  searchInput
+  searchInput,
 }: TabsListProps) => {
-
   return (
-    <TabsContainer sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <RenderTabOptions list={tabsOptions} value={value} handleChange={handleChange} />
+    <TabsContainer sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <RenderTabOptions
+          list={tabsOptions}
+          value={value}
+          handleChange={handleChange}
+        />
       </Box>
-      <RenderTabPanels tabsPanelsOptions={tabsPanelsOptions} searchInput={searchInput} />
+      <RenderTabPanels
+        tabsPanelsOptions={tabsPanelsOptions}
+        searchInput={searchInput}
+      />
     </TabsContainer>
   );
-}
+};

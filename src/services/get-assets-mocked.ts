@@ -2,14 +2,14 @@ export const getAssets = async () => {
   try {
     const res = await fetch("/mocked-data/mocked-assets.json", {
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
-      method: 'GET'
-    })
+      method: "GET",
+    });
     const data = await res.json();
-    return ({ data: data.assets });
+    return { data: data.assets };
   } catch (e) {
-    return ({ error: `Error ${e}` });
+    return { error: `Error ${e}` };
   }
 };

@@ -1,4 +1,4 @@
-import Styled from 'styled-components'
+import Styled from "styled-components";
 
 export const Container = Styled.div`
   height: 20%;
@@ -7,7 +7,7 @@ export const Container = Styled.div`
   flex-direction: column;
   justify-content: flex-start; 
   margin-left: 25px;
-`
+`;
 
 export const InputContainer = Styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const InputContainer = Styled.div`
   align-items: center;
   position: relative;
   width: 300px;
-`
+`;
 
 export const SearchInput = Styled.input`
   margin-top: 5px;
@@ -24,12 +24,12 @@ export const SearchInput = Styled.input`
   height: 30px;
   border-radius: 8px;
   border-width: 1px;
-  border-color: gray;
-`
+  border-color: #E3E7F4;
+`;
 
 export const Searchicon = Styled.img`
     height: 22px;
     width: 22px;
     position: absolute;
     right: 10px;
-`
+`;

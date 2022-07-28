@@ -1,4 +1,4 @@
-export const fetchAssets = async () => {
+export const getAssets = async () => {
   try {
     const res = await fetch("/mocked-data/mocked-assets.json", {
       headers: {
@@ -8,8 +8,8 @@ export const fetchAssets = async () => {
       method: 'GET'
     })
     const data = await res.json();
-    return (data);
+    return ({ data: data.assets });
   } catch (e) {
-    console.log("something went wrong!", e);
+    return ({ error: `Error ${e}` });
   }
 };

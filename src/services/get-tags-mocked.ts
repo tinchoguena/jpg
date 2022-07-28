@@ -1,5 +1,5 @@
 
-export const fetchTags = async () => {
+export const getTags = async () => {
   try {
     const res = await fetch("/mocked-data/mocked-tags.json", {
       headers: {
@@ -9,8 +9,8 @@ export const fetchTags = async () => {
       method: 'GET'
     })
     const data = await res.json();
-    return (data);
+    return ({ data: data.tags });
   } catch (e) {
-    console.log("something went wrong!", e);
+    return ({ error: `Error ${e}` });
   }
 };

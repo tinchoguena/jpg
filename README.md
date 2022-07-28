@@ -17,7 +17,7 @@ Screen Shot of the components behaviour:
 
 In the project directory, you can run:
 
-### `npm install` to install the proyect
+### `npm install` to install the project
 
 ### `npm start`
 
